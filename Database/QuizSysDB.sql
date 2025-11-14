@@ -1,0 +1,61 @@
+CREATE DATABASE Quiz;
+USE Quiz;
+
+CREATE TABLE User(
+	UserID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) UNIQUE NOT NULL,
+    Password VARCHAR (255) NOT NULL,
+    Role ENUM('Student', 'Teacher') NOT NULL,
+    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+ALTER TABLE User 
+MODIFY COLUMN Role ENUM('Student', 'Teacher') DEFAULT 'Student';
+
+CREATE TABLE Quiz(
+	QuizID INT AUTO_INCREMENT PRIMARY KEY,
+	QuizTitle VARCHAR (100) NOT NULL,
+    Description TEXT,
+    CreatedBy INT,
+    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (CreatedBy) REFERENCES User(UserID)
+);
+
+CREATE TABLE Question(
+	QuestionID INT AUTO_INCREMENT PRIMARY KEY,
+	QuizID INT,
+    QuestionText TEXT NOT NULL,
+    QuestionType ENUM ('MCQ', 'TrueFalse') NOT NULL DEFAULT 'MCQ',
+    FOREIGN KEY (QuizID) REFERENCES Quiz(QuizID) ON DELETE CASCADE
+);
+
+CREATE TABLE Options(
+	OptionID INT AUTO_INCREMENT PRIMARY KEY,
+    QuestionID INT,
+    OptionText Text,
+    IsCorrect Boolean DEFAULT FALSE,
+    FOREIGN KEY (QuestionID) REFERENCES Question(QuestionID) ON DELETE CASCADE
+);
+
+CREATE TABLE Attempt(
+	AttemptID INT AUTO_INCREMENT PRIMARY KEY,
+    QuizID INT,
+    UserID INT,
+    Score INT DEFAULT 0,
+    AttemptedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Status ENUM ('Ongoing', 'Submitted') DEFAULT 'Ongoing',
+    FOREIGN KEY (QuizID) REFERENCES Quiz(QuizID),
+    FOREIGN KEY (UserID) REFERENCES User(UserID) 
+);
+
+CREATE TABLE Answer(
+	AnswerID INT AUTO_INCREMENT PRIMARY KEY,
+    AttemptID INT,
+    QuestionID INT,
+    SelectedOptionID INT,
+    FOREIGN KEY (AttemptID) REFERENCES Attempt(AttemptID),
+	FOREIGN KEY (QuestionID) REFERENCES Question(QuestionID),
+    FOREIGN KEY (SelectedOptionID) REFERENCES Options(OptionID)
+);
+ALTER Table Question AUTO_INCREMENT = 4;
