@@ -1,7 +1,10 @@
+
 # 📚 Online Quiz System
 
 A full-stack Online Quiz Management System built with Node.js, Express, MySQL, React (Vite), and Tailwind CSS.
 It allows teachers to create quizzes, add questions/options, and view student attempts. Students can attempt quizzes, submit answers, and view their results.
+
+<img width="1440" height="821" alt="1000099303" src="https://github.com/user-attachments/assets/0f080562-4358-455f-b387-67c3f19c32e7" />
 
 ---
 
@@ -51,6 +54,8 @@ Clean and modular API structure
 
 Error handling for smooth UX
 
+![1000099308](https://github.com/user-attachments/assets/4f44ee45-a866-41f6-ad1b-73a7938f409f)
+
 
 ### 👨‍🏫 Teacher Features
 
@@ -64,6 +69,9 @@ View all attempts for each quiz
 
 Review answers submitted by students
 
+![1000099311](https://github.com/user-attachments/assets/a6edcfcb-cfbc-4f80-96c6-79f011a226ab)
+
+
 
 ### 👩‍🎓 Student Features
 
@@ -74,6 +82,9 @@ Attempt quizzes with MCQs
 Navigate between questions
 
 View attempts & answers + Best Score 
+
+![1000099310](https://github.com/user-attachments/assets/9c4d3168-077b-4312-ad69-b303179c68b8)
+
 
 ---
 
@@ -179,3 +190,4 @@ Responsive design
 
 Reusable components (QuestionCard etc.)
 
+![1000099309](https://github.com/user-attachments/assets/815443dd-3852-4127-afff-1f0f5e910958)
