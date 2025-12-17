@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const cors = require ("cors");
-const PORT = 3000;
 
 app.use(express.json());                        //so taht it can read req body
 
@@ -35,6 +34,7 @@ app.use('/', attemptRoutes);
 const answerRoutes = require ('./routes/answer');
 app.use('/', answerRoutes);
 
+const PORT = process.env.DB_PORT;
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
