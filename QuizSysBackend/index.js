@@ -5,7 +5,10 @@ const cors = require ("cors");
 app.use(express.json());                        //so taht it can read req body
 
 app.use(cors({
-  origin: "http://localhost:5173", 
+  origin: 
+  [ "http://localhost:5173", 
+    "https://quizbuz.netlify.app"
+  ],
   method: ["GET", "POST", "PUT", "PATCH", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
