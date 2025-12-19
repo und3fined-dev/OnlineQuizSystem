@@ -4,6 +4,7 @@ import QuestionCard from "../../components/questionCard";
 
 //Fetching answers on teh basis of questions from Answers table
 function ViewAnswersPage () {
+    const API_URL =import.meta.env.VITE_BACKEND_URL;
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [answers, setAnswers] = useState([]);
@@ -13,7 +14,7 @@ function ViewAnswersPage () {
 
     useEffect(() => {
         const fetchAnswers = async() => {
-            const URL = `http://localhost:3000/quiz/${quizID}/attempt/${attemptID}/answer`;      
+            const URL = `${API_URL}quiz/${quizID}/attempt/${attemptID}/answer`;      
             try
             {
                 const token = localStorage.getItem("token");

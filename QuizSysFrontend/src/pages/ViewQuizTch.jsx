@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import QuestionCard from "../../components/questionCard";
 
 function ViewQuizTch (){
+    const API_URL =import.meta.env.VITE_BACKEND_URL;
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [questions, setQuestions] = useState([]);
@@ -12,7 +13,7 @@ function ViewQuizTch (){
 
     useEffect(() => {
         const fetchQuestions = async() => {
-            const URL = `http://localhost:3000/quiz/${quizID}/question`;
+            const URL = `${API_URL}quiz/${quizID}/question`;
             const token = localStorage.getItem("token");
             try
             {

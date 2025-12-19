@@ -6,6 +6,7 @@ import { createAttempt } from "../../helpers/createAttempt";
 import { SubmitAttempt } from "../../helpers/submitAttempt";
 
 function AttemptQuizPage (){
+    const API_URL =import.meta.env.VITE_BACKEND_URL;
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [questions, setQuestions] = useState([]);
@@ -22,7 +23,7 @@ function AttemptQuizPage (){
             if (isCreated) 
                 return;
             isCreated = true;
-            const URL = `http://localhost:3000/quiz/${quizID}/question`;
+            const URL = `${API_URL}quiz/${quizID}/question`;
             const token = localStorage.getItem("token");
             try
             {

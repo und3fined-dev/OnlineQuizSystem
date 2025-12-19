@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 
 function AuthPage () {
+    const API_URL =import.meta.env.VITE_BACKEND_URL;
     const [isLogin, setIsLogin] = useState(true);                       //things that can change (default is true => login page)
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -14,7 +15,7 @@ function AuthPage () {
     const handleSubmit = async(e) => {
         e.preventDefault();
 
-        const url = isLogin ? "http://localhost:3000/auth/login" : "http://localhost:3000/auth/register";
+        const url = isLogin ? `${API_URL}auth/login` : `${API_URL}auth/register`;
         const body = {name, email, password, role};
 
         try{

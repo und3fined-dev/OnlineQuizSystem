@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 function ViewAttemptsPage() {
+    const API_URL =import.meta.env.VITE_BACKEND_URL;
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [attempts, setAttempts] = useState([]);
@@ -11,7 +12,7 @@ function ViewAttemptsPage() {
 
     useEffect(() => { 
         const fetchAttempts = async() => {
-            const URL = `http://localhost:3000/quiz/${quizID}/attempt`;
+            const URL = `${API_URL}quiz/${quizID}/attempt`;
 
             try{
                 const token = localStorage.getItem("token");

@@ -1,5 +1,6 @@
 export async function getQuizInfo(quizID, token) {
-    const res = await fetch(`http://localhost:3000/quiz/${quizID}`, {
+    const API_URL =import.meta.env.VITE_BACKEND_URL;
+    const res = await fetch(`${API_URL}quiz/${quizID}`, {
         method: "GET",
         headers: {"Content-Type": "application/json", "Authorization": `Bearer ${token}`},
     });

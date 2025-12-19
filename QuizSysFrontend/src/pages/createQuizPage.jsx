@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 
 function CreateQuizPage () {
+    const API_URL =import.meta.env.VITE_BACKEND_URL;
     const [loading, setLoading] = useState(false);
     const [QuizTitle, setQuizTitle] = useState([]);
     const [Description, setDescription] = useState([]);
@@ -11,7 +12,7 @@ function CreateQuizPage () {
     const createQuiz = async(e) => {
         e.preventDefault();
         setLoading(true);
-        const QuizURL = `http://localhost:3000/quiz/create`;
+        const QuizURL = `${API_URL}quiz/create`;
         const body = {QuizTitle, Description};
         const token = localStorage.getItem("token");
         try

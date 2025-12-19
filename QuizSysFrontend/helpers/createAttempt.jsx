@@ -1,6 +1,7 @@
 export async function createAttempt(quizID, token) {
+    const API_URL =import.meta.env.VITE_BACKEND_URL;
     const body = {quizID};
-    const res = await fetch(`http://localhost:3000/quiz/${quizID}/attempt/create`, {
+    const res = await fetch(`${API_URL}quiz/${quizID}/attempt/create`, {
         method: "POST",
         headers: {"Content-Type": "application/json", "Authorization": `Bearer ${token}`},
         body: JSON.stringify(body)

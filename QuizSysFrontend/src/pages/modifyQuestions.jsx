@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 function ModifyQuestions() {
+  const API_URL =import.meta.env.VITE_BACKEND_URL;
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [QuestionText, setQuestionText] = useState("");
@@ -20,7 +21,7 @@ function ModifyQuestions() {
       try {
         const token = localStorage.getItem("token");
         // use whichever endpoint you have that returns an array of questions
-        const URL = `http://localhost:3000/quiz/${quizID}/question`;
+        const URL = `${API_URL}quiz/${quizID}/question`;
         const res = await fetch(URL, {
           headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json" },
         });
@@ -59,7 +60,7 @@ function ModifyQuestions() {
     try {
       const token = localStorage.getItem("token");
       const question = questions[currentIndex];
-      const URL = `http://localhost:3000/quiz/${quizID}/question/${question.QuestionID}`;
+      const URL = `${API_URL}quiz/${quizID}/question/${question.QuestionID}`;
       const body = { QuestionText, QuestionType };
 
       const res = await fetch(URL, {
@@ -94,7 +95,7 @@ function ModifyQuestions() {
   const handleAddOption = async () => {
     if (!OptionText.trim()) return setError("Option text cannot be empty");
     const question = questions[currentIndex];
-    const URL = `http://localhost:3000/quiz/${quizID}/question/${question.QuestionID}/option/create`;
+    const URL = `${API_URL}$quiz/{quizID}/question/${question.QuestionID}/option/create`;
     const token = localStorage.getItem("token");
     const body = { OptionText, IsCorrect };
 
@@ -137,7 +138,7 @@ function ModifyQuestions() {
         for (const opt of Options) {
         if (!opt || !opt.OptionID) continue; // skip null or new options without ID
 
-        const URL = `http://localhost:3000/quiz/${quizID}/question/${questionId}/option/${opt.OptionID}`;
+        const URL = `${API_URL}quiz/${quizID}/question/${questionId}/option/${opt.OptionID}`;
         const body = {
             OptionText: opt.OptionText ?? "",
             IsCorrect: opt.IsCorrect ?? false,

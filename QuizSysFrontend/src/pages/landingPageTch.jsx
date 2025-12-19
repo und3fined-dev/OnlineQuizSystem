@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 
 function LandingPageTch() {
+    const API_URL =import.meta.env.VITE_BACKEND_URL;
+    console.log(API_URL);
     const [quizzes, setQuizzes] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
@@ -9,7 +11,7 @@ function LandingPageTch() {
 
     useEffect(() => {
         const fetchQuizzes = async() =>{
-            const URL = "http://localhost:3000/quiz"
+            const URL = `${API_URL}quiz`
             try
             {
                 const token = localStorage.getItem("token");

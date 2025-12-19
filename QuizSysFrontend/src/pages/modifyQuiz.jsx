@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { getQuizInfo } from "../../helpers/getQuizInfo";
 
 function ModifyQuizPage () {
+    const API_URL =import.meta.env.VITE_BACKEND_URL;
     const [loading, setLoading] = useState(false);
     const [QuizTitle, setQuizTitle] = useState("");
     const [Description, setDescription] = useState("");
@@ -30,7 +31,7 @@ function ModifyQuizPage () {
         setLoading(true);
 
         const token = localStorage.getItem("token");
-        const QuizURL = `http://localhost:3000/quiz/${quizID}`;
+        const QuizURL = `${API_URL}quiz/${quizID}`;
         const body = {QuizTitle, Description};
         try
         {   
@@ -58,7 +59,7 @@ function ModifyQuizPage () {
 
     const getQuizQuestions = async() => {
         const token = localStorage.getItem("token");
-        const QuestURL = `http://localhost:3000/quiz/${quizID}/question`;
+        const QuestURL = `${API_URL}quiz/${quizID}/question`;
         try
         {   
             const res = await fetch(QuestURL, {
@@ -71,7 +72,6 @@ function ModifyQuizPage () {
                 throw new Error ("Failed to get Questions");
             }
             const questID = data[0].QuestionID;
-            console.log("Hello");
             navigate(`/quiz/tch/${quizID}/modifyQuiz/question/${questID}`);
         }
         catch(err)

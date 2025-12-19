@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 
 function AddQuestions ()
 {
+    const API_URL =import.meta.env.VITE_BACKEND_URL;
     const [QuestionText, setQuestionText] = useState("");
     const [QuestionType, setQuestionType] = useState("MCQ");
     const [QuestionID, setQuestionID] = useState(null);
@@ -16,7 +17,7 @@ function AddQuestions ()
 
     const handleSaveQuestion = async() => {
         setLoading(true);
-        const URL = `http://localhost:3000/quiz/${quizID}/question/create`;
+        const URL = `${API_URL}quiz/${quizID}/question/create`;
         const body = {QuestionText, QuestionType};
         const token = localStorage.getItem("token");
         try
@@ -49,7 +50,7 @@ function AddQuestions ()
     };
 
 const addFixedOptions = async (questionId) => {
-    const URL = `http://localhost:3000/quiz/${quizID}/question/${questionId}/option/create`;
+    const URL = `${API_URL}quiz/${quizID}/question/${questionId}/option/create`;
     const token = localStorage.getItem("token");
 
     const fixedOptions = ["True", "False"];
@@ -77,7 +78,7 @@ const addFixedOptions = async (questionId) => {
 
     const handleAddOption = async () => {
         //if (!optionText.trim()) return;
-        const URL = `http://localhost:3000/quiz/${quizID}/question/${QuestionID}/option/create`;
+        const URL = `${API_URL}quiz/${quizID}/question/${QuestionID}/option/create`;
         const token = localStorage.getItem("token");
         const body = {OptionText, IsCorrect}
         try 
